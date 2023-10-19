@@ -55,6 +55,13 @@
 			<version>2.2.0</version>
 
 		</dependency>
+
+		<dependency>
+			<!--	Email Dependency		-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

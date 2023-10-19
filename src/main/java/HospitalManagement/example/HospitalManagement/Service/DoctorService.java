@@ -9,6 +9,8 @@ import HospitalManagement.example.HospitalManagement.RepoistoryLayer.DoctorRepoi
 import HospitalManagement.example.HospitalManagement.RepoistoryLayer.PatienRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class DoctorService {
     private DoctorRepoistory doctorRepoistory;
    @Autowired
    private PatienRepository patienRepository;
+   @Autowired
+   private JavaMailSender javaMailSender;
     public String addDoctor(Doctor doctor)throws Exception {
 
         Doctor doctorObj= doctorRepoistory.findDoctorByDoctorNameAndPhoneNumberAndSpeciality(doctor.getDoctorName() ,
@@ -32,6 +36,20 @@ public class DoctorService {
         }
 
         doctorRepoistory.save(doctor);
+
+        // sending mail to the doctor who was registered in our database
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        String body = "Hi "+ doctor.getDoctorName() +" !" +
+                "You have successfully registered. We are happy to have you hear!.";
+
+        mailMessage.setFrom("makasrinivasulu01@gmail.com"); // from which mail u want to send
+        mailMessage.setTo(doctor.getEmail());//to which one send to mail
+        mailMessage.setSubject("Welcome To the Apollo Hospital's !!");//subject
+        mailMessage.setText(body);//message in the box
+
+        javaMailSender.send(mailMessage);
 
         return "doctor " + doctor.getDoctorName() + " added to database successfully";
     }
@@ -63,7 +81,7 @@ public class DoctorService {
 
             Symptom symptom = patient.getSymptom();//get the symptom
 
-            String symptomName = symptom.name(); // return the name of the enum constant
+            String symptomName = symptom.name(); // get the symptom name
 
             String cityName = patient.getCityName();
 

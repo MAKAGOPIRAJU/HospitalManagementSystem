@@ -52,10 +52,5 @@ public class DoctorControll {
          }
     }
 }
-//  DOUBTS
 
-// 1. WHY MAIL WAS NULL IN THE PATIENT
-// 3. name should atleast 3 characters how to fix this
-// 4.mobile number should atleast 10 characters how to fix this
-// 5. mail should be valid how to check this
 

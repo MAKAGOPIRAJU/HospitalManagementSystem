@@ -41,16 +41,6 @@ public class DoctorControll {
 
     //suggest the doctor basing on the location and symptom
 
-    @GetMapping("/suggestDoctor/{id}")
-    public ResponseEntity suggestDoctor(@PathVariable("id") Integer patientId) throws Exception {
-
-         try {
-             List<Doctor> doctorList = doctorService.suggestDoctor(patientId);
-             return new ResponseEntity(doctorList , HttpStatus.OK);
-         }catch (Exception e) {
-             return  new ResponseEntity(e.getMessage() , HttpStatus.BAD_REQUEST);
-         }
-    }
 }
 
 

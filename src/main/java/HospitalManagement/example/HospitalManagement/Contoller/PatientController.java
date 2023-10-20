@@ -1,12 +1,15 @@
 package HospitalManagement.example.HospitalManagement.Contoller;
 
 
+import HospitalManagement.example.HospitalManagement.Entities.Doctor;
 import HospitalManagement.example.HospitalManagement.Entities.Patient;
 import HospitalManagement.example.HospitalManagement.Service.PateintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/patient")
@@ -37,6 +40,16 @@ public class PatientController {
     }
     catch (Exception e) {
       return new ResponseEntity(e.getMessage() , HttpStatus.BAD_REQUEST);
+    }
+  }
+  @GetMapping("/suggestDoctor/{id}")
+  public ResponseEntity suggestDoctor(@PathVariable("id") Integer patientId) throws Exception {
+
+    try {
+      List<Doctor> doctorList = pateintService.suggestDoctor(patientId);
+      return new ResponseEntity(doctorList , HttpStatus.OK);
+    }catch (Exception e) {
+      return  new ResponseEntity(e.getMessage() , HttpStatus.BAD_REQUEST);
     }
   }
 }

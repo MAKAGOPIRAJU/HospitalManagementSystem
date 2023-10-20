@@ -37,7 +37,7 @@ public class DoctorService {
 
         doctorRepoistory.save(doctor);
 
-        // sending mail to the doctor who was registered in our database
+        /* sending mail to the doctor who was registered in our database */
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 

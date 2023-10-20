@@ -26,17 +26,18 @@ public class PateintService {
 
         // sending the mail to the patient who is registered in this application
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        String body = "Hi "+ patient.getPatientName() +" !" +
-                "You have successfully registered. You can start Search for the Doctors basing you Symptom now.";
+            String body = "Hi " + patient.getPatientName() + " !" +
+                    "You have successfully registered. You can start Search for the Doctors basing you Symptom now.";
 
-        mailMessage.setFrom("makasrinivasulu01@gmail.com"); // from which mail u want to send
-        mailMessage.setTo(patient.getEmail());//to which one send to mail
-        mailMessage.setSubject("Welcome To the Apollo Hospital's !!");//subject
-        mailMessage.setText(body);//message in the box
+            mailMessage.setFrom("makasrinivasulu01@gmail.com"); // from which mail u want to send
+            mailMessage.setTo(patient.getEmail());//to which one send to mail
+            mailMessage.setSubject("Welcome To the Apollo Hospital's !!");//subject
+            mailMessage.setText(body);//message in the box
 
-        mailSender.send(mailMessage);
+            mailSender.send(mailMessage);
+
 
         return "the patient " + patient.getPatientName() + " is added to the db successfully !";
     }
